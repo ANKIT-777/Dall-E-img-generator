@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
-import connectDB from './mongoDb/connect.js';
+import connectDB from './mongoDb/connect.js'; 
 import postRoutes from './rotues/postRoutes.js';
 import dalleRoutes from './rotues/dalleRoutes.js';
 
@@ -22,7 +22,7 @@ app.get('/', async (req, res) => {
 
 const startServer = async () => {
   try {
-    await connectDB(process.env.MONGODB_URL);
+    connectDB(process.env.MONGODB_URL);
     app.listen(8080, () => console.log('Server has started on http://localhost:8080'));
   } catch (error) {
     console.error(error);

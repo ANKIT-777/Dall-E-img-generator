@@ -55,6 +55,8 @@ const Home = () => {
                 )}
                 </div>
 
+                //http://localhost:8080/api/v1/dalle
+
 
       
             
