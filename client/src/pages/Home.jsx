@@ -19,6 +19,8 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [allPosts, setAllPosts] = useState(null);
   const [searchText, setSearchText] = useState('abc');
+  const [searchTimeout, setSearchTimeout] = useState(null);
+  const [searchedResults, setSearchedResults] = useState(null);
   
   useEffect(() =>{
     const fetchPosts = async () => {
@@ -49,6 +51,19 @@ const Home = () => {
     }
     fetchPosts();
   }, []);
+
+  const handleSearchChange = (e) => {
+    clearTimeout(searchTimeout);
+    setSearchText(e.target.value);
+
+    setSearchTimeout(
+      setTimeout(() => {
+        const searchResult = allPosts.filter((item) => item.name.toLowerCase().includes(searchText.toLowerCase())
+         || item.prompt.toLowerCase().includes(searchText.toLowerCase()));
+        setSearchText(searchResult);
+      }, 500),
+    );
+  };
    
   return (
 
@@ -59,7 +74,9 @@ const Home = () => {
     </div>
 
     <div className="mt-16">
-      <FormField />
+      <FormField
+      
+       />
       </div>
 
 
